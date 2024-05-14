@@ -10,6 +10,8 @@ for l in site:
     for link in soup.findAll('a', attrs={'href': re.compile("^https:")}):
         allsite.append(link.get('href'))
 print("all sites are here : " + str(allsite))
+
+#dans cette deuxieme boucle je récupère les videos depuis les liens enregistrés précédament
 for l in allsite:
     r = requests.get(l)
     soup = BeautifulSoup(r.content, "html.parser")
