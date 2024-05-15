@@ -12,3 +12,5 @@ for page in range(10):
     soup = BeautifulSoup(r.content, "html.parser")
     for link in soup.findAll('a', attrs={'href': re.compile("^mailto:")}):
         print(link.get('href'))
+
+# c'est un cas très simple
