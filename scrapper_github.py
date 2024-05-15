@@ -13,4 +13,5 @@ for page in range(10):
     for link in soup.findAll('a', attrs={'href': re.compile("^mailto:")}):
         print(link.get('href'))
 
-# c'est un cas très simple
+# c'est un cas très simple car par la suite
+# il faudrais que j'utilise les API de GitHub
