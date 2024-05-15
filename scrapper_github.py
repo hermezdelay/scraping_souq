@@ -15,3 +15,4 @@ for page in range(10):
 
 # c'est un cas très simple car par la suite
 # il faudrais que j'utilise les API de GitHub
+# depuis le cour de Openclasserooms
