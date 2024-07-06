@@ -5,10 +5,7 @@
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 import requests
 import urllib.request
-import time
 from bs4 import BeautifulSoup
-import json
-import csv
 import requests
 
 from winsound import Beep
