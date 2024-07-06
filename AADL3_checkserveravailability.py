@@ -42,6 +42,11 @@ if __name__ == '__main__':
                 print("The response 404 for iteration", i)
                 sleep(3)
                 continue
+
+            if(response.status_code == 500): # pour surveiller l'erreur 404
+                print("The response 500 for iteration", i)
+                sleep(3)
+                continue
             response.raise_for_status()
         except requests.exceptions.Timeout:
             print("The request timed out! %s", i)
