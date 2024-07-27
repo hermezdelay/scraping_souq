@@ -50,8 +50,11 @@ if __name__ == '__main__':
             response.raise_for_status()
         except requests.exceptions.Timeout:
             print("The request timed out! %s", i)
+
         except HTTPError as hp:
             print('l"except du try %s', hp)
+        except requests.exceptions.RequestException as e:
+            print("Request failed:", e)
 
         else:# si sa marche je fait un bip sonore et j'ouvre l'url dans un nouvel navigateur
             print("it works")
