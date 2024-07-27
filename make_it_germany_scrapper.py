@@ -1,16 +1,31 @@
 from bs4 import BeautifulSoup
 import re
 import requests
+import urllib.request
+import time
+import json
+import csv
 
-allsite = ["https://www.make-it-in-germany.com/fr/travailler-en-allemagne/bourse-de-lemploi?tx_solr%5Bfilter%5D%5B0%5D=topjobs%3A4&tx_solr%5Bpage%5D=2&tx_solr%5Bq%5D=web#list45538",
-           "https://www.systhen.com/contact/", "https://www.zeendoc.com"]
+
+allsite = ["https://www.make-it-in-germany.com/fr/travailler-en-allemagne/bourse-de-lemploi?tx_solr%5Bfilter%5D%5B0%5D=topjobs%3A4&tx_solr%5Bpage%5D=",
+           "&tx_solr%5Bq%5D=web#list45538"]
 emails = []
 tels = []
-for l in allsite:
-    print("----------------- le site " + l + " contient : ----------------------")
-    r = requests.get(l)
+
+filecsv = open('make_it_in_germany.csv', 'w', encoding='utf8')
+# Set the URL you want to webscrape from
+url = 'https://saudi.souq.com/sa-ar/apple/new/a-c/s/?section=2&page='
+file = open('SouqDataapple.json', 'w', encoding='utf8')
+file.write('[\n')
+data = {}
+csv_columns = ['name', 'price', 'img']
+
+
+for page in range(1000):
+    print('---', page, '---')
+    r = requests.get(allsite[0] + str(page) + allsite[1] )
     soup = BeautifulSoup(r.content, "html.parser")
-    for link in soup.findAll('a', attrsclass={'btn btn--primary'}):
+    for link in soup.findAll('a', attrs={'class':'btn btn--primary'}):
         emails.append(link.get('href'))
         print(link.get('href'))
     for link in soup.findAll('a', attrs={'href': re.compile("^mailto:")}):
